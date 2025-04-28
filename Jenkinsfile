@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Save Artifacts') {
             steps {
-                archiveArtifacts artifacts: '**', followSymlinks: false
+                archiveArtifacts artifacts: '*.txt', followSymlinks: false
             }
         }
     }
