@@ -1,4 +1,4 @@
-/*
+
 pipeline {
     agent any
 	tools {nodejs "mynodejs"}
@@ -18,35 +18,6 @@ pipeline {
 		stage('node build') {
             steps {
                 sh 'npm install'
-            }
-        }
-    }
-}
-*/
-pipeline {
-    agent any
-    tools {
-        nodejs 'mynodejs' // This name must match your Jenkins NodeJS tool configuration
-    }
-    stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'master', url: 'https://github.com/awstrainersz/test-demogit.git'
-            }
-        }
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'npm run build'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'npm test'
             }
         }
     }
