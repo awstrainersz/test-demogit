@@ -34,7 +34,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'mysecret', variable: 'PRODUCTION_SECRET')]) {
                     echo "${PRODUCTION_SECRET}"
                     script{
-                        printIn " The Secret value is : ${PRODUCTION_SECRET}"
+                        println " The Secret value is : ${PRODUCTION_SECRET}"
                     }
                 }
             }
