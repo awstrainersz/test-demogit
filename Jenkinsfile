@@ -25,7 +25,7 @@ pipeline {
             }
         }
         stage('Save Artifacts') {
-            environmen{
+            environment{
                 NODE_ENV= "stage"
             }
             steps {
