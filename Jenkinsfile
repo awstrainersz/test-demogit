@@ -1,7 +1,11 @@
-
 pipeline {
     agent any
-	tools {nodejs "mynodejs"}
+    tools {
+        nodejs "mynodejs"
+    }
+    environment {
+        NODE_ENV = "production"
+    }
     stages {
         stage('Hello') {
             steps {
@@ -11,11 +15,11 @@ pipeline {
         stage('Dev') {
             steps {
                 git 'https://github.com/awstrainersz/test-demogit'
-                echo 'content of my file is'
+                echo 'Content of my file is:'
                 sh 'cat file1.txt'
             }
         }
-		stage('node build') {
+        stage('Node Build') {
             steps {
                 sh 'npm install'
             }
@@ -23,6 +27,13 @@ pipeline {
         stage('Save Artifacts') {
             steps {
                 archiveArtifacts artifacts: '*.txt', followSymlinks: false
+            }
+        }
+        stage('Stage with Secret') {
+            steps {
+                withCredentials([string(credentialsId: 'mysecret', variable: 'PRODUCTION_SECRET')]) {
+                    echo "${PRODUCTION_SECRET}"
+                }
             }
         }
     }
