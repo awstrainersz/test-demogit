@@ -25,6 +25,7 @@ pipeline {
             }
         }
         stage('Save Artifacts') {
+            NODE_ENV= "stage"
             steps {
                 archiveArtifacts artifacts: '*.txt', followSymlinks: false
             }
